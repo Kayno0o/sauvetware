@@ -1,43 +1,30 @@
-{% extends 'base.html.twig' %}
+{% extends 'layout.html.twig' %}
 
 {% block title %}Sauvetage index{% endblock %}
 
-{% block body %}
-    <h1>Sauvetage index</h1>
+{% block content %}
+    <h1>Sauvetage</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Code</th>
-                <th>Title</th>
-                <th>Date</th>
-                <th>Saved</th>
-                <th>Infos</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
+    <p><a href="{{ path('sauvetage_new') }}">Create new</a></p>
+
+    <div class="cards">
         {% for sauvetage in sauvetages %}
-            <tr>
-                <td>{{ sauvetage.id }}</td>
-                <td>{{ sauvetage.code }}</td>
-                <td>{{ sauvetage.title }}</td>
-                <td>{{ sauvetage.date }}</td>
-                <td>{{ sauvetage.saved }}</td>
-                <td>{{ sauvetage.infos }}</td>
-                <td>
-                    <a href="{{ path('sauvetage_show', {'id': sauvetage.id}) }}">show</a>
-                    <a href="{{ path('sauvetage_edit', {'id': sauvetage.id}) }}">edit</a>
-                </td>
-            </tr>
+            <div class="card">
+                <div class="card-title">
+                    <h1>{{ sauvetage.title }}</h1>
+                    <div>{{ sauvetage.date }}</div>
+                </div>
+                <div class="card-body">
+                    <p><b>{{ sauvetage.saved }}</b></p>
+                    <div class="desc">{{ sauvetage.infos }}</div>
+                </div>
+                <div class="card-footer">
+                    <a href="{{ path('sauvetage_show', {'id': sauvetage.id}) }}" class="button">Afficher</a>
+    {#                <a href="{{ path('sauvetage_edit', {'id': sauvetage.id}) }}">edit</a>#}
+                </div>
+            </div>
         {% else %}
-            <tr>
-                <td colspan="7">no records found</td>
-            </tr>
+            <div>no records found</div>
         {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('sauvetage_new') }}">Create new</a>
+    </div>
 {% endblock %}

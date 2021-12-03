@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block header %}
+    <nav>
+        <h1><a href="{{ path('home') }}">Sauvetware</a></h1>
+        <ul>
+            <li><a href="{{ path('sauvetage_index') }}">Sauvetage</a></li>
+            <li><a href="{{ path('sauveteur_index') }}">Sauveteur</a></li>
+        </ul>
+        <div></div>
+    </nav>
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        {% block content %}{% endblock %}
+    </div>
+{% endblock %}
+
+{% block footer %}
+    <footer>
+        <p>&copy; {{ 'now'|date('Y') }} - Sauvetage</p>
+    </footer>
+{% endblock %}

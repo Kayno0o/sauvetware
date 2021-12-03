@@ -1,53 +1,46 @@
-{% extends 'base.html.twig' %}
+{% extends 'layout.html.twig' %}
 
 {% block title %}Sauveteur index{% endblock %}
 
-{% block body %}
-    <h1>Sauveteur index</h1>
+{% block content %}
+    <h1>Sauveteur</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Patronyme</th>
-                <th>Family</th>
-                <th>Prenom</th>
-                <th>Birth</th>
-                <th>Death</th>
-                <th>Maried</th>
-                <th>Children</th>
-                <th>Child_of</th>
-                <th>Infos</th>
-                <th>Code</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
+    <p><a href="{{ path('sauveteur_new') }}">Create new</a></p>
+
+    <div class="cards">
         {% for sauveteur in sauveteurs %}
-            <tr>
-                <td>{{ sauveteur.id }}</td>
-                <td>{{ sauveteur.patronyme }}</td>
-                <td>{{ sauveteur.family ? 'Yes' : 'No' }}</td>
-                <td>{{ sauveteur.prenom }}</td>
-                <td>{{ sauveteur.birth }}</td>
-                <td>{{ sauveteur.death }}</td>
-                <td>{{ sauveteur.maried }}</td>
-                <td>{{ sauveteur.children }}</td>
-                <td>{{ sauveteur.childOf }}</td>
-                <td>{{ sauveteur.infos }}</td>
-                <td>{{ sauveteur.code }}</td>
-                <td>
-                    <a href="{{ path('sauveteur_show', {'id': sauveteur.id}) }}">show</a>
-                    <a href="{{ path('sauveteur_edit', {'id': sauveteur.id}) }}">edit</a>
-                </td>
-            </tr>
+            <div class="card">
+                <div class="card-title">
+                    <h1>{{ sauveteur.patronyme }}</h1>
+                    <div>{{ sauveteur.prenom }},
+                        {% if sauveteur.birth != "Unknown" %}{{ sauveteur.birth }}{% else %}****{% endif %}
+                        -
+                        {% if sauveteur.death != "Unknown" %}{{ sauveteur.death }}{% else %}****{% endif %}</div>
+                </div>
+                <div class="card-body">
+                    <div>
+                        {% if sauveteur.maried != "Unknown" %}
+                            <p>{{ sauveteur.maried }}</p>
+                        {% endif %}
+                        {% if sauveteur.children != "Unknown" %}
+                            <p>{{ sauveteur.children }}</p>
+                        {% endif %}
+                        {% if sauveteur.childOf != "Unknown" %}
+                            <p>{{ sauveteur.childOf }}</p>
+                        {% endif %}
+                    </div>
+                    <div class="desc">
+                        {{ sauveteur.infos }}
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <a href="{{ path('sauveteur_show', {'id': sauveteur.id}) }}" class="button">Afficher</a>
+                </div>
+            </div>
         {% else %}
             <tr>
                 <td colspan="12">no records found</td>
             </tr>
         {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('sauveteur_new') }}">Create new</a>
+    </div>
 {% endblock %}

@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'layout.html.twig' %}
 
 {% block title %}Sauveteur{% endblock %}
 
@@ -7,10 +7,6 @@
 
     <table class="table">
         <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ sauveteur.id }}</td>
-            </tr>
             <tr>
                 <th>Patronyme</th>
                 <td>{{ sauveteur.patronyme }}</td>
@@ -46,10 +42,6 @@
             <tr>
                 <th>Infos</th>
                 <td>{{ sauveteur.infos }}</td>
-            </tr>
-            <tr>
-                <th>Code</th>
-                <td>{{ sauveteur.code }}</td>
             </tr>
         </tbody>
     </table>
