@@ -60,7 +60,7 @@ class Sauveteur
     private $child_of;
 
     /**
-     * @ORM\Column(type="string", length=4096)
+     * @ORM\Column(type="text")
      */
     private $infos;
 
