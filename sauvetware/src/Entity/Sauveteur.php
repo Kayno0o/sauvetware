@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\SauveteurRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -66,6 +68,16 @@ class Sauveteur
      * @ORM\Column(type="string", length=255)
      */
     private $code;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Sauvetage::class, mappedBy="sauveteurs")
+     */
+    private $sauvetages;
+
+    public function __construct()
+    {
+        $this->sauvetages = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -188,6 +200,33 @@ class Sauveteur
     public function setCode(string $code): self
     {
         $this->code = $code;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Sauvetage[]
+     */
+    public function getSauvetages(): Collection
+    {
+        return $this->sauvetages;
+    }
+
+    public function addSauvetage(Sauvetage $sauvetage): self
+    {
+        if (!$this->sauvetages->contains($sauvetage)) {
+            $this->sauvetages[] = $sauvetage;
+            $sauvetage->addSauveteur($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSauvetage(Sauvetage $sauvetage): self
+    {
+        if ($this->sauvetages->removeElement($sauvetage)) {
+            $sauvetage->removeSauveteur($this);
+        }
 
         return $this;
     }

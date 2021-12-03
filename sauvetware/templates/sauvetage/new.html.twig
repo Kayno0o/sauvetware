@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Sauvetage{% endblock %}
+
+{% block body %}
+    <h1>Create new Sauvetage</h1>
+
+    {{ include('sauvetage/_form.html.twig') }}
+
+    <a href="{{ path('sauvetage_index') }}">back to list</a>
+{% endblock %}

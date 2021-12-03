@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Sauveteur{% endblock %}
+
+{% block body %}
+    <h1>Create new Sauveteur</h1>
+
+    {{ include('sauveteur/_form.html.twig') }}
+
+    <a href="{{ path('sauveteur_index') }}">back to list</a>
+{% endblock %}

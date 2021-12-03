@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Sauvetage index{% endblock %}
+
+{% block body %}
+    <h1>Sauvetage index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Code</th>
+                <th>Title</th>
+                <th>Date</th>
+                <th>Saved</th>
+                <th>Infos</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for sauvetage in sauvetages %}
+            <tr>
+                <td>{{ sauvetage.id }}</td>
+                <td>{{ sauvetage.code }}</td>
+                <td>{{ sauvetage.title }}</td>
+                <td>{{ sauvetage.date }}</td>
+                <td>{{ sauvetage.saved }}</td>
+                <td>{{ sauvetage.infos }}</td>
+                <td>
+                    <a href="{{ path('sauvetage_show', {'id': sauvetage.id}) }}">show</a>
+                    <a href="{{ path('sauvetage_edit', {'id': sauvetage.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('sauvetage_new') }}">Create new</a>
+{% endblock %}

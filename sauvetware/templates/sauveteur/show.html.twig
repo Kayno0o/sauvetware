@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Sauveteur{% endblock %}
+
+{% block body %}
+    <h1>Sauveteur</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ sauveteur.id }}</td>
+            </tr>
+            <tr>
+                <th>Patronyme</th>
+                <td>{{ sauveteur.patronyme }}</td>
+            </tr>
+            <tr>
+                <th>Family</th>
+                <td>{{ sauveteur.family ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Prenom</th>
+                <td>{{ sauveteur.prenom }}</td>
+            </tr>
+            <tr>
+                <th>Birth</th>
+                <td>{{ sauveteur.birth }}</td>
+            </tr>
+            <tr>
+                <th>Death</th>
+                <td>{{ sauveteur.death }}</td>
+            </tr>
+            <tr>
+                <th>Maried</th>
+                <td>{{ sauveteur.maried }}</td>
+            </tr>
+            <tr>
+                <th>Children</th>
+                <td>{{ sauveteur.children }}</td>
+            </tr>
+            <tr>
+                <th>Child_of</th>
+                <td>{{ sauveteur.childOf }}</td>
+            </tr>
+            <tr>
+                <th>Infos</th>
+                <td>{{ sauveteur.infos }}</td>
+            </tr>
+            <tr>
+                <th>Code</th>
+                <td>{{ sauveteur.code }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('sauveteur_index') }}">back to list</a>
+
+    <a href="{{ path('sauveteur_edit', {'id': sauveteur.id}) }}">edit</a>
+
+    {{ include('sauveteur/_delete_form.html.twig') }}
+{% endblock %}

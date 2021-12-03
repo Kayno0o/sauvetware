@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Sauveteur index{% endblock %}
+
+{% block body %}
+    <h1>Sauveteur index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Patronyme</th>
+                <th>Family</th>
+                <th>Prenom</th>
+                <th>Birth</th>
+                <th>Death</th>
+                <th>Maried</th>
+                <th>Children</th>
+                <th>Child_of</th>
+                <th>Infos</th>
+                <th>Code</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for sauveteur in sauveteurs %}
+            <tr>
+                <td>{{ sauveteur.id }}</td>
+                <td>{{ sauveteur.patronyme }}</td>
+                <td>{{ sauveteur.family ? 'Yes' : 'No' }}</td>
+                <td>{{ sauveteur.prenom }}</td>
+                <td>{{ sauveteur.birth }}</td>
+                <td>{{ sauveteur.death }}</td>
+                <td>{{ sauveteur.maried }}</td>
+                <td>{{ sauveteur.children }}</td>
+                <td>{{ sauveteur.childOf }}</td>
+                <td>{{ sauveteur.infos }}</td>
+                <td>{{ sauveteur.code }}</td>
+                <td>
+                    <a href="{{ path('sauveteur_show', {'id': sauveteur.id}) }}">show</a>
+                    <a href="{{ path('sauveteur_edit', {'id': sauveteur.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="12">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('sauveteur_new') }}">Create new</a>
+{% endblock %}
